@@ -1,0 +1,23 @@
+{
+  "name": "take-notes",
+  "version": "1.0.0",
+  "description": "\"\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Goobber33/Take-Notes-.git"
+  },
+  "author": "Goobber33",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Goobber33/Take-Notes-/issues"
+  },
+  "homepage": "https://github.com/Goobber33/Take-Notes-#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
