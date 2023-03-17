@@ -14,12 +14,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Route to serve notes.html when '/notes' is requested
-app.get('notes', (req, res) => {
+app.get('/notes', (req, res) => {
   res.sendFile(path.join(__dirname, 'miniature-eureka/develop/public/notes.html'));
 });
 
 // Route to serve index.html when the root path '/' is requested
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'miniature-eureka/develop/public/index.html'));
 });
 
