@@ -58,31 +58,3 @@ app.post('/api/notes', (req, res) => {
     });
   });
 });
-
-// Route to delete a note with the specified id from db.json
-app.delete('/api/notes/:id', (req, res) => {
-  const noteId = req.params.id;
-
-  fs.readFile(path.join(__dirname, 'Develop/db/db.json'), 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).end();
-    }
-
-    let notes = JSON.parse(data);
-    notes = notes.filter((note) => note.id !== noteId);
-
-    fs.writeFile(path.join(__dirname, 'Develop/db/db.json'), JSON.stringify(notes, null, 2), (err) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).end();
-      }
-      res.status(200).end();
-    });
-  });
-});
-
-// Start the Express server on the specified port
-app.listen(PORT, () => {
-  console.log(`Server is listening at http://localhost:${PORT}`);
-});
