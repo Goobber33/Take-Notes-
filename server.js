@@ -9,23 +9,23 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware for serving static files, parsing JSON, and parsing urlencoded form data
-app.use(express.static('public'));
+app.use(express.static('develop/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Route to serve notes.html when '/notes' is requested
 app.get('/notes', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/notes.html'));
+  res.sendFile(path.join(__dirname, 'Develop/public/notes.html'));
 });
 
 // Route to serve index.html when the root path '/' is requested
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, 'Develop/public/index.html'));
 });
 
 // Route to get all saved notes from db.json and return them as JSON
 app.get("/api/notes", (req, res) => {
-  fs.readFile(path.join(__dirname, "db/db.json"), "utf8", (err, data) => {
+  fs.readFile(path.join(__dirname, "Develop/db/db.json"), "utf8", (err, data) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ error: "Failed to read notes from file." });
@@ -40,7 +40,7 @@ app.post('/api/notes', (req, res) => {
   const newNote = req.body;
   newNote.id = uuidv4();
 
-  fs.readFile(path.join(__dirname, 'db/db.json'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, 'Develop/db/db.json'), 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       return res.status(500).end();
@@ -49,7 +49,7 @@ app.post('/api/notes', (req, res) => {
     const notes = JSON.parse(data);
     notes.push(newNote);
 
-    fs.writeFile(path.join(__dirname, 'db/db.json'), JSON.stringify(notes, null, 2), (err) => {
+    fs.writeFile(path.join(__dirname, 'Develop/db/db.json'), JSON.stringify(notes, null, 2), (err) => {
       if (err) {
         console.error(err);
         return res.status(500).end();
@@ -63,7 +63,7 @@ app.post('/api/notes', (req, res) => {
 app.delete('/api/notes/:id', (req, res) => {
   const noteId = req.params.id;
 
-  fs.readFile(path.join(__dirname, 'db/db.json'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, 'Develop/db/db.json'), 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       return res.status(500).end();
@@ -72,7 +72,7 @@ app.delete('/api/notes/:id', (req, res) => {
     let notes = JSON.parse(data);
     notes = notes.filter((note) => note.id !== noteId);
 
-    fs.writeFile(path.join(__dirname, 'db/db.json'), JSON.stringify(notes, null, 2), (err) => {
+    fs.writeFile(path.join(__dirname, 'Develop/db/db.json'), JSON.stringify(notes, null, 2), (err) => {
       if (err) {
         console.error(err);
         return res.status(500).end();
