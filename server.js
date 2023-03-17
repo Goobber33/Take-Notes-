@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware for serving static files, parsing JSON, and parsing urlencoded form data
-app.use(express.static('develop/public'));
+app.use(express.static(path.join(__dirname, 'develop/public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
