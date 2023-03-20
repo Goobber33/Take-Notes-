@@ -33,4 +33,4 @@ Screenshot of the deployed website
 
 # Credits
 
-This application was built from scratch by Kyle Parks
+The starter code for this application was built by Xandromus on Github, and the server.js file and deployment was created by Kyle Parks
